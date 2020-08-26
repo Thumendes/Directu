@@ -1,0 +1,15 @@
+@import "./fonts";
+@import "./mixins";
+@import "./variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+#root,
+html {
+  background: $dark;
+}
