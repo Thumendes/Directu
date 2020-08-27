@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  input {
+    padding: 1rem 2rem;
+    border: 2px solid #ddd;
+    border-radius: 1rem;
+    transition: 250ms;
+    &:hover {
+      border-color: $primary;
+      box-shadow: 0 2px 10px rgba($primary, 0.2);
+    }
+  }
+}

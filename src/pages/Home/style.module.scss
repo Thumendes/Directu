@@ -52,6 +52,7 @@
     width: 35%;
     position: relative;
     font-size: 1.5rem;
+    max-height: 40vh;
     h1 {
       position: absolute;
       top: -2rem;
@@ -68,11 +69,12 @@
     }
     ul {
       width: 100%;
+      padding: 0 1rem;
       list-style: none;
       overflow-y: auto;
       li {
         cursor: pointer;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
