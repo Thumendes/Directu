@@ -4,6 +4,7 @@ import "./styles/global.scss";
 import Home from "./pages/Home/index";
 import Forms from "./pages/Forms/index";
 import Login from "./pages/Login";
+import Detail from "./pages/Detail";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/" component={Home} exact />
         <Route path="/forms" component={Forms} exact />
         <Route path="/auth" component={Login} exact />
+        <Route path="/detail/:id" component={Detail} exact />
       </Switch>
     </BrowserRouter>
   );

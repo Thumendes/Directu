@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import style from "./style.module.scss";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
@@ -39,7 +40,9 @@ const Forms = () => {
                 respostas
                 <p>{Math.floor(Math.random() * 20)}</p>
               </span>
-              <button>Ver detalhes</button>
+              <Link to={`/detail/${index}`}>
+                <button>Ver detalhes</button>
+              </Link>
             </main>
           </section>
         ))}

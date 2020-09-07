@@ -1,0 +1,85 @@
+@import "../../styles/variables";
+
+.container {
+  width: 100vw;
+  .cards {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    gap: 3rem;
+  }
+
+  .card {
+    width: 30rem;
+    height: fit-content;
+    background-color: $background;
+    padding: 1rem;
+    .list {
+      margin-bottom: 5rem;
+      li {
+        font-weight: 600;
+        list-style: none;
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+
+  .card:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .x {
+    font-size: 3.5rem;
+    margin: 2rem 0;
+    cursor: pointer;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.3rem;
+      border-radius: 1rem;
+      color: $light;
+      font-family: Poppins;
+      font-weight: 200;
+      cursor: pointer;
+      transition: 100ms;
+    }
+  }
+  .arquivar {
+    background-color: #ffb300;
+    &:hover {
+      background-color: darken(#ffb300, 10%);
+    }
+  }
+  .deletar {
+    background-color: #ff153c;
+
+    &:hover {
+      background-color: darken(#ff153c, 20%);
+    }
+  }
+
+  .answers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: $background;
+    .divisor {
+      height: 80vh;
+      width: 2px;
+      background: #ddd;
+    }
+  }
+}
