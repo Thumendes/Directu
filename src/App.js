@@ -8,7 +8,7 @@ import Detail from "./pages/Detail";
 import Find from "./pages/Find";
 import Settings from "./pages/Settings";
 import Analysis from "./pages/analysis";
-import DetailUser from "./components/DetailUser";
+import User from "./pages/User"
 
 const App = () => {
   return (
@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/settings" component={Settings} exact />
         <Route path="/analysis" component={Analysis} exact />
         <Route path="/detailUser/:name" component={Home} exact/>
+        <Route path="/user" component={User} exact/>
       </Switch>
     </BrowserRouter>
   );
