@@ -2,6 +2,7 @@
 
 .container {
   width: 100vw;
+
   .cards {
     height: 100vh;
     display: flex;
@@ -15,8 +16,10 @@
     height: fit-content;
     background-color: $background;
     padding: 1rem;
+
     .list {
       margin-bottom: 5rem;
+
       li {
         font-weight: 600;
         list-style: none;
@@ -38,12 +41,14 @@
     margin: 2rem 0;
     cursor: pointer;
   }
+
   .buttons {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
+
     button {
       padding: 1rem 2rem;
       font-size: 1.3rem;
@@ -55,12 +60,15 @@
       transition: 100ms;
     }
   }
+
   .arquivar {
     background-color: #ffb300;
+
     &:hover {
       background-color: darken(#ffb300, 10%);
     }
   }
+
   .deletar {
     background-color: #ff153c;
 
@@ -73,13 +81,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     background: $background;
-    .divisor {
-      height: 80vh;
-      width: 2px;
-      background: #ddd;
+
+    table {
+      margin-top: 2rem;
+      background: #fff;
+      padding: 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 50px #0001;
+
+      thead td {
+        font-weight: bold;
+      }
+
+      td {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #efefef;
+      }
     }
   }
 }

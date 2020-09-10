@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+
+.svg {
+  color: $light;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: 300ms;
+  margin-left: 10rem;
+
+  &:hover {
+    color: $secondary;
+    transform: scale(1.2);
+  }
+}

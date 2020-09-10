@@ -1,0 +1,49 @@
+@import "../../styles/variables";
+
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  color: #fff;
+
+  ul {
+    list-style: none;
+  }
+
+  aside {
+    h1 {
+      margin-bottom: 2rem;
+    }
+
+    .form {
+    transition: 250ms;
+      h1 {
+        color: #efefef;
+      }
+
+      h2 {
+        color: $dark;
+      }
+      border: 3px solid transparent;
+
+      cursor: pointer;
+      padding: 1rem;
+      background: $secondary;
+      color: #fff;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+    .active{
+      h1{
+        color: $dark;
+      }
+      // border: 5px solid $terciary;
+      transform: scale(1.05);
+      background: $light;
+      color: $terciary;
+    }
+  }
+
+}

@@ -1,0 +1,72 @@
+@import "../../styles/variables";
+
+.container {
+  width: 100vw;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  background: #0009;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .modal {
+    min-width: 40rem;
+    width: fit-content;
+    background: $light;
+    height: fit-content;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    padding-bottom: 4rem;
+    box-shadow: 0px -10px 0px $terciary;
+
+    h1 {
+      margin-top: 1rem;
+      font-family: Raleway;
+      color: $secondary;
+    }
+
+    .box {
+      width: 100%;
+      height: 80%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      align-content: center;
+
+
+      .data {
+        background: $terciary;
+        border-radius: 0.3rem;
+        padding: 0.5rem 0.6rem;
+        position: relative;
+        margin-top: 5rem;
+        width: max-content;
+        height: fit-content;
+        justify-self: center;
+        margin-right: 2rem;
+
+
+        .question {
+          position: absolute;
+          top: -1rem;
+          background: $primary-light;
+          width: max-content;
+          padding: 0 0.5rem;
+          color: $grey;
+        }
+
+        .answer {
+          color: $light;
+        }
+      }
+    }
+  }
+}

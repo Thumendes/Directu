@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
+import DetailUser from '../../components/DetailUser'
 import style from "./style.module.scss";
 import {
   FiPlus,
@@ -9,9 +10,12 @@ import {
   FiSlack,
 } from "react-icons/fi";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
 
 const Home = () => {
+  const { name } = useParams();
+
   const [forms, setForms] = useState([
     "Caio Feliz",
     "Arthur Mendes",
@@ -25,34 +29,50 @@ const Home = () => {
     "Joao Victor da Silva",
   ]);
 
+
   return (
     <Layout>
       <div className={style.container}>
+
+
+        {
+          name && <DetailUser name={name}/>
+        }
+
+
         <main>
-          <div>
-            <FiSettings />{" "}
-          </div>
+          <Link to="/settings">
+            <div>
+              <FiSettings />{" "}
+            </div>
+          </Link>
           <Link to="/forms">
             <div>
               <FiList />
             </div>
           </Link>
-          <div>
-            <FiDatabase />
-          </div>
-          <div>
-            <FiSlack />
-          </div>
+          <Link to="/analysis">
+            <div>
+              <FiDatabase />
+            </div>
+          </Link>
+          <Link to="/find">
+            <div>
+              <FiSlack />
+            </div>
+          </Link>
         </main>
 
         <aside>
           <h1>Formulário Padrão</h1>
           <ul>
             {forms.map((name, index) => (
-              <li key={index}>
-                <span>{name}</span>
-                <FiPlus />
-              </li>
+              <Link key={index} to={`/detailUser/${name}`}>
+                <li  >
+                  <span>{name}</span>
+                  <FiPlus />
+                </li>
+              </Link>
             ))}
           </ul>
         </aside>

@@ -27,8 +27,11 @@ const Forms = () => {
   };
 
   return (
-    <Layout>
+    <Layout back>
       <div className={style.container}>
+
+        
+
         {forms.map((form, index) => (
           <section
             key={index}
