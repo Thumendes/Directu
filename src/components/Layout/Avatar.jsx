@@ -1,18 +1,24 @@
 import React from "react";
 import style from "./style.module.scss";
 import { FiUser } from "react-icons/fi";
+import { Link } from "react-router-dom"
+
 
 const Avatar = () => {
   return (
+
     <div className={style.avatar}>
-      <div className={style.perfil}>
-        <FiUser className={style.icone} />
-      </div>
+      <Link to="/user">
+        <div className={style.perfil}>
+          <FiUser className={style.icone} />
+        </div>
+      </Link>
       <div className={style.info}>
         <span className={style.name}>Caio Feliz</span>
         <span className={style.store}>Bizzaro</span>
       </div>
-    </div>
+    </div >
+
   );
 };
 

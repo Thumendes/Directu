@@ -5,7 +5,7 @@ import {FiUser} from "react-icons/fi"
 
 const User = () => {
     return (
-        <Layout>
+        <Layout back>
             <div className={style.container}>
                 <div className={style.avatar}>
                     <FiUser />
