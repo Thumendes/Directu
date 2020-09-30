@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Layout from "../../components/Layout";
 import DetailUser from '../../components/DetailUser'
 import style from "./style.module.scss";
@@ -9,41 +9,38 @@ import {
   FiDatabase,
   FiSlack,
 } from "react-icons/fi";
+import {FaFolderPlus} from 'react-icons/fa'
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import api from '../../services/api';
 
 
 const Home = () => {
   const { name } = useParams();
 
-  const [forms, setForms] = useState([
-    "Caio Feliz",
-    "Arthur Mendes",
-    "Ana Beatriz",
-    "Isabel Lara",
-    "Joao Victor da Silva",
-    "Joao Victor da Silva",
-    "Joao Victor da Silva",
-    "Joao Victor da Silva",
-    "Joao Victor da Silva",
-    "Joao Victor da Silva",
-  ]);
+  const [forms, setForms] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      const {data} = await api.get("/form")
+      console.log(data);
+      setForms(data)
+    })()
+    console.log(forms)
+  }, [])
 
   return (
     <Layout>
       <div className={style.container}>
 
-
         {
           name && <DetailUser name={name}/>
         }
 
-
         <main>
-          <Link to="/settings">
+          <Link to="/newform">
             <div>
-              <FiSettings />{" "}
+              <FaFolderPlus />{" "}
             </div>
           </Link>
           <Link to="/forms">
@@ -65,16 +62,18 @@ const Home = () => {
 
         <aside>
           <h1>Formulário Padrão</h1>
+
           <ul>
             {forms.map((name, index) => (
               <Link key={index} to={`/detailUser/${name}`}>
-                <li  >
+                <li>
                   <span>{name}</span>
                   <FiPlus />
                 </li>
               </Link>
             ))}
           </ul>
+
         </aside>
       </div>
     </Layout>

@@ -4,10 +4,10 @@
   width: 100vw;
 
   .cards {
-    height: 100vh;
+    height: 50vh;
     display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 3rem;
     gap: 3rem;
   }
 
@@ -70,10 +70,10 @@
   }
 
   .deletar {
-    background-color: #ff153c;
+    background-color: $red;
 
     &:hover {
-      background-color: darken(#ff153c, 20%);
+      background-color: darken($red, 20%);
     }
   }
 
@@ -83,23 +83,36 @@
     align-items: center;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
     background: $background;
+    .box {
+      padding: 5rem;
+    }
 
     table {
       margin-top: 2rem;
       background: #fff;
-      padding: 3rem;
       border-radius: 1rem;
       box-shadow: 0 10px 50px #0001;
-
-      thead td {
-        font-weight: bold;
+      border-collapse: collapse;
+      padding: 3rem;
+      thead {
+        text-align: left;
+        background: rgb(244, 247, 248);
+        color: #0009;
+        font-weight: 600;
+        padding: 10px 15px;
       }
-
       td {
-        padding: 0.5rem 1rem;
-        border-bottom: 1px solid #efefef;
+        padding: 12px 20px;
+      }
+      tbody tr {
+        cursor: pointer;
+        transition: 250ms ease;
+        color: #0009;
+        &:hover {
+          background: $light;
+          color: $primary;
+        }
       }
     }
   }

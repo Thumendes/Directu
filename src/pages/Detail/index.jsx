@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout";
 import style from "./style.module.scss";
@@ -8,75 +8,61 @@ import { Form } from "@unform/web";
 
 const answers = [
   {
-    "id": 0,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 0,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Arthur"
   },
   {
-    "id": 2,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 2,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Leticia"
   },
   {
-    "id": 3,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 3,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Julia"
   },
   {
-    "id": 4,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 4,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Bosta"
   },
   {
-    "id": 5,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 5,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Lindo"
   },
   {
-    "id": 6,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 6,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Lindo"
   },
   {
-    "id": 7,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 7,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Lindo"
   },
   {
-    "id": 8,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
+    id: 8,
+    pgt1: "lorem",
+    pgt2: "ipsum",
+    pgt3: "indolor",
+    pgt4: "Lindo"
   },
-  {
-    "id": 9,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
-  },
-  {
-    "id": 10,
-    "pgt1": "lorem",
-    "pgt2": "ipsum",
-    "pgt3": "indolor",
-    "pgt4": "arthur"
-  }
 ]
 
 const Detail = () => {
@@ -109,10 +95,12 @@ const Detail = () => {
           </div>
         </div>
         <div className={style.answers}>
+          <div class={style.box}>
+
           <Form onSubmit={handleSubmitForm}>
             <Input name="search" />
           </Form>
-          <table cellPadding={0} cellSpacing={0}>
+          <table>
             <thead>
               <tr>
                 <td>ID</td>
@@ -124,14 +112,29 @@ const Detail = () => {
             </thead>
             <tbody>
               {answers.filter(answer => {
-                if(!search) return true
-                ["ptg1", 'ptg2', 'ptg3', 'ptg4'].foreach(pgt => {
-                  if(answer[pgt].includes(search)) return true
-                  return false
-                })
-              })}
+                if (!search) {
+                  return true
+                }
+                let response = false;
+                for(let key in answer){
+                  if(typeof answer[key] === "string" && answer[key].toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+                    response = true
+                  }
+                }
+                return response;
+              }).map(value => (
+                <tr key={value.id}>
+                  <td>{value.id}</td>
+                  <td>{value.pgt1}</td>
+                  <td>{value.pgt2}</td>
+                  <td>{value.pgt3}</td>
+                  <td>{value.pgt4}</td>
+                </tr>
+
+              ))}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </Layout>
