@@ -50,7 +50,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-
+    margin-bottom: 2rem;
     .box {
       background-color: $light;
       padding: 1rem 5rem;
@@ -59,8 +59,18 @@
       border-bottom: 0.4rem solid $secondary;
       transition: 200ms;
       cursor: default;
+      display: flex;
+      align-items: center;
 
-      &:hover{
+      h1 {
+        font-size: 1.3rem;
+        margin-left: 1rem;
+      }
+      span {
+        font-size: 1rem;
+      }
+
+      &:hover {
         font-size: 1.34rem;
       }
     }

@@ -26,6 +26,12 @@
         padding: 1rem;
         border-bottom: 1px solid #ddd;
       }
+
+      span{
+        font-size: 1.2rem;
+        color: $secondary;
+        margin-left: 1rem;
+      }
     }
   }
 
@@ -73,7 +79,7 @@
     background-color: $red;
 
     &:hover {
-      background-color: darken($red, 20%);
+      background-color: darken($red, 20%); 
     }
   }
 

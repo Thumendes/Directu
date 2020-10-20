@@ -5,6 +5,9 @@ import { Link } from "react-router-dom"
 
 
 const Avatar = () => {
+
+  const logado = JSON.parse(localStorage.getItem('user')) 
+
   return (
 
     <div className={style.avatar}>
@@ -14,7 +17,7 @@ const Avatar = () => {
         </div>
       </Link>
       <div className={style.info}>
-        <span className={style.name}>Caio Feliz</span>
+        <span className={style.name}>{logado.name}</span>
         <span className={style.store}>Bizzaro</span>
       </div>
     </div >

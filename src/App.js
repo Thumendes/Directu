@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import FormContextProvider from './context/FormContext'
 import "./styles/global.scss";
 import Home from "./pages/Home/index";
 import Forms from "./pages/Forms/index";
@@ -8,20 +9,22 @@ import Detail from "./pages/Detail";
 import Find from "./pages/Find";
 import NewForm from "./pages/NewForm";
 import Analysis from "./pages/analysis";
-import User from "./pages/User"
+  import User from "./pages/User"
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
+            <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/forms" component={Forms} exact />
         <Route path="/auth" component={Login} exact />
         <Route path="/detail/:id" component={Detail} exact />
         <Route path="/find" component={Find} exact />
-        <Route path="/newform" component={NewForm} exact />
+        <FormContextProvider>
+          <Route path="/newform" component={NewForm} exact />
+        </FormContextProvider>
         <Route path="/analysis" component={Analysis} exact />
-        <Route path="/detailUser/:name" component={Home} exact/>
+        <Route path="/:nome" component={Home} exact/>
         <Route path="/user" component={User} exact/>
       </Switch>
     </BrowserRouter>

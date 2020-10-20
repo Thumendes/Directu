@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout";
 import style from "./style.module.scss";
 import { FiXCircle } from "react-icons/fi";
 import Input from "../../components/Form/Input";
 import { Form } from "@unform/web";
+import {useHistory} from 'react-router-dom'
+
+import api from '../../services/api'
 
 const answers = [
   {
@@ -68,72 +71,90 @@ const answers = [
 const Detail = () => {
   const { id } = useParams();
   const [search, setSearch] = useState("")
+  const [form, setForm] = useState({})
+  const [questions, setQuestions] = useState([])
+
+  const history = useHistory()
 
   const handleSubmitForm = (data) => {
     setSearch(data.search)
+
   }
+
+  const handleDeleteClick = () => {
+    api.delete(`/form/${id}`).then(() =>  alert('Deletado com sucesso'))
+    history.push('/')
+  }
+
+  useEffect(() => {
+    api.get(`/form/${id}`).then(({ data }) => {
+      setForm(data)
+      setQuestions(data.questions)
+    })
+  }, [])
 
   return (
     <Layout back>
       <div className={style.container}>
         <div className={style.cards}>
           <div className={style.card}>
+
             <ul className={style.list}>
-              <li>Nome</li>
-              <li>Data de criação</li>
-              <li>Número de respostas</li>
-              <li>Intenção</li>
-              <li>Vantagens</li>
+              <li>Nome: <span>{form.name}</span></li>
+              <li>Data de criação: <span>{form.createdAt}</span></li>
+              <li>Número de respostas: <span>{Math.floor(Math.random() * 20)}</span></li>
+              {/* <li>Intenção: <span>{form.name}</span></li>
+              <li>Vantagens: <span>{form.name}</span></li> */}
             </ul>
+
           </div>
           <div className={style.card}>
             <FiXCircle className={style.x} />
             <div className={style.buttons}>
-              <button className={style.arquivar}>Arquivar</button>
-              <button className={style.deletar}>Deletar</button>
+              <button className={style.deletar} onClick={handleDeleteClick}>Deletar</button>
             </div>
           </div>
         </div>
         <div className={style.answers}>
-          <div class={style.box}>
+          <div className={style.box}>
 
-          <Form onSubmit={handleSubmitForm}>
-            <Input name="search" />
-          </Form>
-          <table>
-            <thead>
-              <tr>
-                <td>ID</td>
-                <td>Pergunta 1</td>
-                <td>Pergunta 2</td>
-                <td>Pergunta 3</td>
-                <td>Pergunta 4</td>
-              </tr>
-            </thead>
-            <tbody>
-              {answers.filter(answer => {
-                if (!search) {
-                  return true
-                }
-                let response = false;
-                for(let key in answer){
-                  if(typeof answer[key] === "string" && answer[key].toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-                    response = true
+            <Form onSubmit={handleSubmitForm}>
+              <Input name="search" />
+            </Form>
+            <table>
+              <thead>
+                <tr>
+                  <td>ID</td>
+                  {
+                    questions.map(question => (
+                      <td>{question.name}</td>
+                    ))
                   }
-                }
-                return response;
-              }).map(value => (
-                <tr key={value.id}>
-                  <td>{value.id}</td>
-                  <td>{value.pgt1}</td>
-                  <td>{value.pgt2}</td>
-                  <td>{value.pgt3}</td>
-                  <td>{value.pgt4}</td>
                 </tr>
+              </thead>
+              <tbody>
+                {answers.filter(answer => {
+                  if (!search) {
+                    return true
+                  }
+                  let response = false;
+                  for (let key in answer) {
+                    if (typeof answer[key] === "string" && answer[key].toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
+                      response = true
+                    }
+                  }
+                  return response;
+                }).map(value => (
+                  <tr key={value.id}>
+                    <td>{value.id}</td>
+                    <td>{value.pgt1}</td>
+                    <td>{value.pgt2}</td>
+                    <td>{value.pgt3}</td>
+                  </tr>
 
-              ))}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

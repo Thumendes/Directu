@@ -23,10 +23,8 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       const {data} = await api.get("/form")
-      console.log(data);
       setForms(data)
     })()
-    console.log(forms)
   }, [])
 
   return (
@@ -34,7 +32,7 @@ const Home = () => {
       <div className={style.container}>
 
         {
-          name && <DetailUser name={name}/>
+           name && <DetailUser name={name}/>
         }
 
         <main>
@@ -64,10 +62,10 @@ const Home = () => {
           <h1>Formulário Padrão</h1>
 
           <ul>
-            {forms.map((name, index) => (
-              <Link key={index} to={`/detailUser/${name}`}>
+            {forms.map((form, index) => (
+              <Link key={index} to="/name">
                 <li>
-                  <span>{name}</span>
+                  <span>{form.name}</span>
                   <FiPlus />
                 </li>
               </Link>
