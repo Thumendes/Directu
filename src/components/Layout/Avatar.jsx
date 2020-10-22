@@ -9,8 +9,9 @@ const Avatar = () => {
   const logado = JSON.parse(localStorage.getItem('user')) 
 
   return (
-
-    <div className={style.avatar}>
+    <>
+    {
+      logado && <div className={style.avatar}>
       <Link to="/user">
         <div className={style.perfil}>
           <FiUser className={style.icone} />
@@ -21,6 +22,8 @@ const Avatar = () => {
         <span className={style.store}>Bizzaro</span>
       </div>
     </div >
+    }
+    </>
 
   );
 };

@@ -12,18 +12,22 @@ const Login = () => {
   const history = useHistory()
 
   const handleSubmit = async (data) => {
-    // try {
-    //   const { data: response } = await api.post('auth', data);
 
-    //   localStorage.setItem('token', response.token)
+    try {
+      const response = await api.post('/auth', data);
 
-    //   console.log(response.shopkeeper)
+      console.log(response)
 
-    //   localStorage.setItem('user', JSON.stringify(response.shopkeeper))
-    //   // history.push("/")
-    // } catch (error) {
-    //   alert('Senha ou email errados')
-    // }
+      // localStorage.setItem('token', response.token)
+
+      // console.log(response.shopkeeper)
+
+      // localStorage.setItem('user', JSON.stringify(response.shopkeeper))
+      // history.push("/")
+    } catch (error) {
+      alert('Senha ou email errados')
+    }
+
   };
 
   return (
@@ -44,7 +48,7 @@ const Login = () => {
                 <Checkbox label="Lembrar-me" name="remember" />
                 <Link to="/forget-password">Esqueceu a senha?</Link>
               </div>
-              <button>Entrar</button>
+              <button type="submit">Entrar</button>
             </div>
           </Form>
         </div>
