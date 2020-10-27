@@ -1,149 +1,148 @@
 @import "../../styles/variables";
 
 .container {
-    width: 100vw;
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 4%;
+  margin-bottom: 10rem;
+
+  .header {
+    width: 50%;
     height: fit-content;
+    background-color: aliceblue;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 4%;
-    margin-bottom: 10rem;
+    padding: 3rem 5rem;
 
-    .header {
-        width: 50%;
-        height: fit-content;
-        background-color: aliceblue;
-        border-radius: 1rem;
-        display: flex;
-        flex-direction: column;
-        padding: 3rem 5rem;
+    .title {
+      width: 100%;
 
-        .title {
-            width: 100%;
-
-            input {
-                width: 100%;
-                font-size: 3rem;
-                background-color: transparent;
-                border-bottom: 2px dotted $grey;
-                color: $secondary;
-                font-family: Poppins;
-                font-weight: 100;
-
-                &::placeholder {
-                    color: $secondary;
-                }
-
-                &:focus {
-                    background-color: darken($color: aliceblue, $amount: 2);
-                }
-            }
-        }
-
-        .description {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-top: 3rem;
-
-            input {
-                width: 80%;
-                font-size: 1rem;
-                background-color: transparent;
-                border-bottom: 2px dotted $grey;
-                color: $secondary;
-                font-family: Poppins;
-                font-weight: 100;
-
-                &::placeholder {
-                    color: $secondary;
-                }
-
-                &:focus {
-                    background-color: darken($color: aliceblue, $amount: 2);
-                }
-            }
-        }
-    }
-
-    .body {
-        margin-top: 3rem;
-        width: 50%;
-        height: fit-content;
+      input {
+        width: 100%;
+        font-size: 3rem;
         background-color: transparent;
-        position: relative;
-        border-radius: 1rem;
-        display: flex;
-        flex-direction: column;
+        border-bottom: 2px solid $shadow;
+        color: $secondary;
+        font-family: Poppins;
+        font-weight: 100;
 
-        .lowbar {
-
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 3rem;
-
-            button {
-                background-color: $primary-light;
-                padding: 1rem 2rem;
-                font-size: 1.3rem;
-                border-radius: 1rem;
-                cursor: pointer;
-                transition: 200ms;
-                color: $terciary;
-
-                &:hover {
-                    background-color: $terciary;
-                    color: $light;
-                }
-            }
-
-            .add {
-                color: $light;
-                cursor: pointer;
-                transition: 200ms;
-                font-size: 4rem;
-                margin-bottom: -6px;
-
-                &:hover {
-                    color: $primary-light;
-                }
-            }
+        &::placeholder {
+          color: $primary-light;
         }
+
+        &:focus {
+          background-color: darken($color: aliceblue, $amount: 2);
+        }
+      }
     }
+
+    .description {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 3rem;
+
+      input {
+        width: 80%;
+        font-size: 1rem;
+        background-color: transparent;
+        border-bottom: 2px solid $shadow;
+        color: $secondary;
+        font-family: Poppins;
+        font-weight: 100;
+
+        &::placeholder {
+          color: $primary-light;
+        }
+
+        &:focus {
+          background-color: darken($color: aliceblue, $amount: 2);
+        }
+      }
+    }
+  }
+
+  .body {
+    margin-top: 3rem;
+    width: 50%;
+    height: fit-content;
+    background-color: transparent;
+    position: relative;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    .lowbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 3rem;
+
+      button {
+        background-color: $primary-light;
+        padding: 1rem 2rem;
+        font-size: 1.3rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: 200ms;
+        color: $terciary;
+
+        &:hover {
+          background-color: $terciary;
+          color: $light;
+        }
+      }
+
+      .add {
+        color: $light;
+        cursor: pointer;
+        transition: 200ms;
+        font-size: 4rem;
+        margin-bottom: -6px;
+
+        &:hover {
+          color: $primary-light;
+        }
+      }
+    }
+  }
 }
 
 .footer {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 3rem;
+
+  .addQuestion {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    min-width: 100px;
+    width: 10rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    transition: 250ms;
+    background: aliceblue;
+    color: $primary;
+  }
 
-    gap: 3rem;
-
-    .addQuestion {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 1rem;
-        min-width: 100px;
-        width: 10rem;
-        font-size: 1.1rem;
-        cursor: pointer;
-        border-radius: 1.5rem;
-        transition: 250ms;
-        background: aliceblue;
-        color: $primary;
-    }
-
-    .save {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        border-radius: 1.5rem;
-        color: #fff;
-        background: $primary;
-        font-size: 1.1rem;
-        padding: 1rem;
-    }
+  .save {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1.5rem;
+    color: #fff;
+    background: $primary;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
 }

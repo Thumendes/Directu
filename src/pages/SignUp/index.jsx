@@ -4,60 +4,55 @@ import logo from "../../assets/images/logo.png";
 import { useHistory } from "react-router-dom";
 import { Form } from "@unform/web";
 import Input from "../../components/Form/Input";
-import Checkbox from "../../components/Form/Checkbox";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
 
-const Login = () => {
+const SignUp = () => {
   const history = useHistory();
 
   const handleSubmit = async (data) => {
     try {
-      const { data: response } = await api.post("/authadmin", data);
+      const response = await api.post("/store", data);
 
-      if (response.error) {
-        alert(response.error);
-        return;
-      }
+      console.log(response);
 
-      sessionStorage.setItem("token", response.token);
-
-      history.push("/");
+      history.push("/auth");
     } catch (error) {
-      alert("Senha ou email errados");
+      alert("Erro ao cadastrar Loja");
     }
   };
 
   return (
     <div className={style.container}>
-      <aside className={style.logoContainer}>
-        <img src={logo} alt="Logo da Directu" />
-      </aside>
       <aside className={style.formContainer}>
         <div className="card">
           <header>
-            <span>Login</span>
+            <span>Cadastro</span>
           </header>
           <Form onSubmit={handleSubmit}>
             <div className={style.form}>
+              <Input name="name" placeholder="Nome" />
               <InputMask mask="99.999.999/9999-99">
                 {(inputProps) => (
                   <Input {...inputProps} placeholder="CNPJ" name="cnpj" />
                 )}
               </InputMask>
+              <Input placeholder="Image URL" type="text" name="imageURL" />
               <Input placeholder="Senha" type="password" name="password" />
-              <button type="submit">Entrar</button>
-
-              <Link to="/signup" className={style.link}>
-                Não tem conta?
+              <button type="submit">Cadastrar</button>
+              <Link to="/auth" className={style.link}>
+                Já tem conta?
               </Link>
             </div>
           </Form>
         </div>
       </aside>
+      <aside className={style.logoContainer}>
+        <img src={logo} alt="Logo da Directu" />
+      </aside>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

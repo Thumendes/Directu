@@ -1,101 +1,64 @@
 import React, { createContext, useState } from "react";
+import initialQuestions from "../helpers/InitialFormValue";
 
 export const Context = createContext(null);
-
-const initialQuestions = [
-  {
-    name: "",
-    options: [
-      {
-        name: "",
-      },
-    ],
-  },
-];
 
 const ContextProvider = ({ children }) => {
   const [questions, setQuestions] = useState(initialQuestions);
 
-  const addQuestion = () => {
-    if(questions.length === 3) return;
-    setQuestions([
-      ...questions,
-      {
-        name: "",
-        options: [
-          {
-            name: "",
-          },
-        ],
-      },
-    ]);
-  };
-
-  const removeQuestion = (indexQuestion) => {
-    console.table(questions)
-    console.log(indexQuestion)
+  const setIsOption = (indexQuestion, value) => {
+    console.log(indexQuestion, value);
     setQuestions(
-      questions.filter((question, index) => indexQuestion !== index)
-    );
-  };
-
-  const addOption = (indexQuestion) => {
-    setQuestions(
-      questions.map((question, index) => {
-        if (index !== indexQuestion) return question;
-        if (question.options.length === 3) return question;
-
-        question.options = [...question.options, { name: "" }];
+      questions.map((question) => {
+        if (question.id === indexQuestion) {
+          if (value === false) {
+            question.options = null;
+          } else {
+            question.options = [
+              {
+                name: "",
+              },
+              {
+                name: "",
+              },
+              {
+                name: "",
+              },
+            ];
+          }
+        }
         return question;
       })
     );
   };
 
-  const removeOption = (indexOption, indexQuestion) => {
+  const handleChangeOptionTitle = (indexQuestion, indexOption, value) => {
     setQuestions(
-      questions.map((question, index) => {
-        if (index === indexQuestion) {
-          question.options.splice(indexOption, 1)
+      questions.map((question) => {
+        if (question.id === indexQuestion) {
+          question.options[indexOption].name = value;
         }
-        return question
+        return question;
       })
     );
   };
 
-  const handleChangeQuestionTitle = (indexQuestion, title) => {
+  const handleChangeQuestionTitle = (indexQuestion, value) => {
     setQuestions(
-      questions.map((question, index) => {
-        if(indexQuestion === index){
-          question.name = title
+      questions.map((question) => {
+        if (question.id === indexQuestion) {
+          question.name = value;
         }
-        return question
+        return question;
       })
-    )
-  }
-
-  const handleChangeOptionTitle = (indexQuestion, indexOption, title) => {
-    setQuestions(
-      questions.map((question, indexQ) => {
-        if(indexQuestion === indexQ){
-          question.options.map((option, indexO) => {
-            if(indexOption === indexO){
-              option.name = title
-            }
-          })
-        }
-        return question
-      })
-    )
-  }
+    );
+  };
 
   const value = {
-    addQuestion,
-    removeQuestion,
-    addOption,
-    removeOption,
     questions,
+    setIsOption,
+    handleChangeOptionTitle,
     handleChangeQuestionTitle,
-    handleChangeOptionTitle
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

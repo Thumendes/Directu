@@ -1,30 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.scss";
 import { FiUser } from "react-icons/fi";
-import { Link } from "react-router-dom"
-
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import api from "../../services/api";
 
 const Avatar = () => {
+  const [signed, setSigned] = useState(null);
 
-  const logado = JSON.parse(localStorage.getItem('user')) 
+  useEffect(() => {
+    (async () => {
+      const { data } = await api.get(
+        `store/${sessionStorage.getItem("token")}`
+      );
+      setSigned(data);
+    })();
+  }, []);
 
   return (
-    <>
-    {
-      logado && <div className={style.avatar}>
-      <Link to="/user">
-        <div className={style.perfil}>
-          <FiUser className={style.icone} />
-        </div>
-      </Link>
-      <div className={style.info}>
-        <span className={style.name}>{logado.name}</span>
-        <span className={style.store}>Bizzaro</span>
-      </div>
-    </div >
-    }
-    </>
-
+    <div className={style.avatar}>
+      {signed && (
+        <>
+          <Link to="/user">
+            {signed.imageURL ? (
+              <img
+                src={signed.imageURL}
+                alt={signed.name}
+                className={style.icone}
+              />
+            ) : (
+              <FiUser className={style.icone} />
+            )}
+          </Link>
+          <div className={style.info}>
+            <span className={style.name}>Loja</span>
+            <span className={style.store}>{signed.name}</span>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 
