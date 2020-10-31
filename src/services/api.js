@@ -1,7 +1,11 @@
-import axios from 'axios'
+import axios from "axios";
+
+const development = true;
 
 const api = axios.create({
-    baseURL: "http://localhost:8080"
-})
+  baseURL: development
+    ? "http://192.168.0.3:3001/"
+    : "https://directu-backend.herokuapp.com/",
+});
 
-export default api
+export default api;

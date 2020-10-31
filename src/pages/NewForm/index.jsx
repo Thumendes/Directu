@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import style from "./style.module.scss";
-import { ImPlus } from "react-icons/im";
 import Layout from "../../components/Layout";
-import { FiPlusCircle, FiXSquare, FiSave } from "react-icons/fi";
+import { FiSave } from "react-icons/fi";
 import Question from "../../components/Question";
 import { Context } from "../../context/FormContext";
-// import InputMask from "react-input-mask";
 import api from "../../services/api";
+import { useHistory } from "react-router-dom";
 
 const NewForm = () => {
   const { questions } = useContext(Context);
+  const history = useHistory();
 
   const [form, setForm] = useState({
     name: "",
@@ -22,7 +22,9 @@ const NewForm = () => {
   const handleSubmitForm = async () => {
     const response = await api.post("form", form);
 
-    console.log(response);
+    if (response.status === 200) {
+      history.push("/");
+    }
   };
 
   return (
@@ -63,13 +65,11 @@ const NewForm = () => {
             />
           </div>
         </div>
-
         <div className={style.body}>
           <Question index={0} />
           <Question index={1} />
           <Question index={2} />
         </div>
-
         <footer className={style.footer}>
           <button className={style.save} onClick={handleSubmitForm}>
             <FiSave />

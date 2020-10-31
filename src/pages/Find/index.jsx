@@ -1,62 +1,62 @@
-import React, { useState, useRef } from 'react'
-import Layout from '../../components/Layout'
+import React, { useState, useRef } from "react";
+import Layout from "../../components/Layout";
 import style from "./style.module.scss";
-import { FiUser } from 'react-icons/fi'
-import { Link, useParams } from 'react-router-dom'
-import Back from '../../components/Back'
-import api from '../../services/api';
-
+import api from "../../services/api";
 
 const Find = () => {
-    const { id } = useParams()
+  const inputRef = useRef(null);
+  const [clientData, setClientData] = useState();
 
-    const inputRef = useRef(null)
-    const [clientData, setClientData] = useState()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { data } = await api.get(`/client/${inputRef.current?.value}`);
+    setClientData(data);
+  };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const { data } = await api.get(`/client/${inputRef.current?.value}`)
-        setClientData(data)
+  return (
+    <Layout back>
+      <main className={style.container}>
+        <h1 className={style.title}>Digite o código do cliente:</h1>
 
-    }
+        <form onSubmit={handleSubmit}>
+          <input className={style.input} type="text" ref={inputRef} />
+        </form>
 
-    return (
-        <Layout back>
-            <main className={style.container}>
+        {clientData && (
+          <div className={style.info}>
+            <ul>
+              <li>
+                Nome:
+                <span>{clientData.client.name}</span>
+              </li>
 
-                <div className={style.text}>
-                    <h1>Digite o código do cliente:</h1>
-                </div>
+              <li>
+                CPF:
+                <span>{clientData.client.cpf}</span>
+              </li>
+              <li>
+                Email:
+                <span>{clientData.client.email}</span>
+              </li>
+              <li>
+                Respostas:
+                {clientData.answers.map((answer) => (
+                  <>
+                    {answer.questions.map((question) => (
+                      <div className={style.answer}>
+                        <b>{question.name}</b>
+                        <span>{question.value}</span>
+                      </div>
+                    ))}
+                  </>
+                ))}
+              </li>
+            </ul>
+          </div>
+        )}
+      </main>
+    </Layout>
+  );
+};
 
-                <form className={style.input} onSubmit={handleSubmit}>
-                    <input type="text" ref={inputRef} />
-                </form>
-
-                {clientData &&
-                    <div className={style.info}>
-                        <div className={style.box}>
-                            <span>Nome:</span> 
-                            <h1>{clientData[0].name}</h1>
-                        </div>
-                        <div className={style.box}>
-                            <span>Genero:</span> 
-                            <h1>{clientData[0].gender}</h1>
-                        </div>
-                        <div className={style.box}>
-                            <span>Idade:</span> 
-                            <h1>{clientData[0].age}</h1>
-                        </div>
-                        <div className={style.box}>
-                            <span>Email:</span> 
-                            <h1>{clientData[0].email}</h1>
-                        </div>
-    
-                    </div>
-                }
-
-            </main>
-        </Layout>
-    )
-}
-
-export default Find
+export default Find;

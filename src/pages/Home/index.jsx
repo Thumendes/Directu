@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
-import DetailUser from '../../components/DetailUser'
+import DetailUser from "../../components/DetailUser";
 import style from "./style.module.scss";
 import {
   FiPlus,
@@ -9,11 +9,10 @@ import {
   FiDatabase,
   FiSlack,
 } from "react-icons/fi";
-import {FaFolderPlus} from 'react-icons/fa'
+import { FaFolderPlus } from "react-icons/fa";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import api from '../../services/api';
-
+import api from "../../services/api";
 
 const Home = () => {
   const { name } = useParams();
@@ -22,18 +21,17 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const {data} = await api.get("/form")
-      setForms(data)
-    })()
-  }, [])
+      const { data } = await api.get(
+        `/form?storeId=${sessionStorage.getItem("token")}`
+      );
+      setForms(data);
+    })();
+  }, []);
 
   return (
     <Layout>
       <div className={style.container}>
-
-        {
-           name && <DetailUser name={name}/>
-        }
+        {name && <DetailUser name={name} />}
 
         <main>
           <Link to="/newform">
@@ -63,7 +61,7 @@ const Home = () => {
 
           <ul>
             {forms.map((form, index) => (
-              <Link key={index} to="/name">
+              <Link key={index} to={`/detail/${form._id}`}>
                 <li>
                   <span>{form.name}</span>
                   <FiPlus />
@@ -71,7 +69,6 @@ const Home = () => {
               </Link>
             ))}
           </ul>
-
         </aside>
       </div>
     </Layout>
