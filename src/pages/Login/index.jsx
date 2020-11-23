@@ -4,7 +4,6 @@ import logo from "../../assets/images/logo.png";
 import { useHistory } from "react-router-dom";
 import { Form } from "@unform/web";
 import Input from "../../components/Form/Input";
-import Checkbox from "../../components/Form/Checkbox";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
