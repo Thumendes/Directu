@@ -47,3 +47,21 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: $secondary;
 }
+
+input {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid transparent;
+  border-radius: 0.5rem;
+  transition: 250ms;
+  background: darken($grey, 10);
+  color: #fff;
+  &::placeholder {
+    color: #ddd;
+  }
+  &:hover {
+    border-color: #fff;
+  }
+  &:focus {
+    border-color: $primary;
+  }
+}

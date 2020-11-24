@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const development = false;
+const development = true;
 
 const api = axios.create({
   baseURL: development
-    ? "http://192.168.0.3:3001/"
+    ? "http://192.168.0.10:3001/"
     : "https://directu-backend.herokuapp.com/",
 });
 

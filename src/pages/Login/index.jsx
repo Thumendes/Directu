@@ -47,10 +47,6 @@ const Login = () => {
               </InputMask>
               <Input placeholder="Senha" type="password" name="password" />
               <button type="submit">Entrar</button>
-
-              <Link to="/signup" className={style.link}>
-                Não tem conta?
-              </Link>
             </div>
           </Form>
         </div>
